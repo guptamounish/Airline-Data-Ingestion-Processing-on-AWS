@@ -4,6 +4,33 @@
 
 The Airline Data Ingestion & Processing Project is a cloud-based ETL pipeline built on AWS to process airline flight data. The project automates data ingestion, transformation, and storage using AWS S3, Glue, Redshift, EventBridge, Step Functions, and SNS. The processed data is stored in Amazon Redshift for further querying and analysis.
 
+
+**BUSINESS LOGIC**
+
+The business logic of the Airline Data Ingestion & Processing Project on AWS centers around automating the extraction, transformation, and loading (ETL) of airline flight data, leveraging various AWS services to create a scalable and efficient cloud-based pipeline. Here's a breakdown of the key components and their roles in the business logic:
+
+**Data Ingestion:**
+
+**AWS S3:** Acts as the initial landing zone for flight data in CSV format. This is where raw data files are uploaded by airline clients.
+**AWS EventBridge:** Monitors the S3 bucket for new data uploads and triggers the ETL process via Step Functions. This automation ensures that data processing begins as soon as new data arrives.
+**Data Processing (ETL):**
+
+**AWS Glue Crawler:** Automatically scans and catalogs data in S3, preparing it for transformation by identifying formats and schemas, which facilitates metadata management.
+**AWS Glue Jobs:** The core of the ETL process, where raw flight data is transformed. This involves reading the data from S3, enriching it with additional details like airport codes, and then preparing it for analysis by transforming and loading it into Redshift.
+**Data Storage and Querying:**
+
+**Amazon Redshift:** Serves as the analytical database where processed data is stored. It provides the capability to run complex queries over processed data, enabling insights and analytics on flight patterns, delays, etc.
+**Schema Management:** The creation of specific schemas and tables in Redshift to store processed data in an organized manner, optimizing for query performance.
+**Orchestration and Monitoring:**
+
+**AWS Step Functions:** Orchestrates the sequence of tasks from data ingestion to storage, including the execution of Glue jobs and crawlers. This manages task dependencies and handles error checking, ensuring the ETL process is robust.
+Amazon SNS: Used for sending notifications on the status of the Glue jobs, which helps in monitoring the health of the ETL process and quickly addressing any issues.
+**Operational Efficiency:**
+
+**Permissions and Policies:** Proper AWS IAM roles and policies are crucial for securing and managing access to AWS resources, ensuring that each component operates within its defined scope.
+**Automation:** The use of EventBridge and Step Functions automates the workflow, reducing manual overhead and speeding up the process from data upload to insights generation.
+By automating the ingestion, transformation, and loading of flight data, the project enables timely and efficient data processing on a scalable cloud platform. This automation not only minimizes the time to insight for airline data analytics but also reduces the possibility of human error and operational costs, making it a vital tool for any data-driven decision-making process in the aviation sector.
+
 ## Project Architecture
 
 ![Project Architecture](https://github.com/guptamounish/Airline-Data-Ingestion-Processing-on-AWS/blob/main/Project%20Architecture.png)
